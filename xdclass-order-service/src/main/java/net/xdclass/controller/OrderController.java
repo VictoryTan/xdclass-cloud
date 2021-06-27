@@ -27,12 +27,13 @@ public class OrderController {
     @RequestMapping("/save")
     public Object save(int videoId){
 
-        Video video = restTemplate.getForObject("http://localhost:9000/api/v1/video/find_by_id?videoId="+videoId, Video.class);
+        Video video = restTemplate.getForObject("http://xdclass-video-service/api/v1/video/find_by_id?videoId="+videoId, Video.class);
 
         VideoOrder videoOrder = new VideoOrder();
         videoOrder.setVideoId(video.getId());
         videoOrder.setVideoTitle(video.getTitle());
         videoOrder.setCreateTime(new Date());
+        videoOrder.setServerInfo(video.getServerInfo());
         return videoOrder;
 
     }

@@ -1,9 +1,12 @@
 package net.xdclass.controller;
 
+import net.xdclass.domain.Video;
 import net.xdclass.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Description 旭瑶&小滴课堂 xdclass.net
@@ -22,9 +25,10 @@ public class VideoController {
 
 
     @RequestMapping("/find_by_id")
-    public Object findById(int videoId){
-
-        return videoService.findById(videoId);
+    public Object findById(int videoId, HttpServletRequest request){
+        Video video = videoService.findById(videoId);
+        video.setServerInfo(request.getServerName()+":"+request.getServerPort());
+        return video;
     }
 
 }

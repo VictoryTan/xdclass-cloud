@@ -19,6 +19,15 @@ public class VideoOrder {
     private String videoTitle;
     private String videoImg;
     private Integer userId;
+    private String serverInfo;
+
+    public String getServerInfo() {
+        return serverInfo;
+    }
+
+    public void setServerInfo(String serverInfo) {
+        this.serverInfo = serverInfo;
+    }
 
     public Integer getId() {
         return id;
