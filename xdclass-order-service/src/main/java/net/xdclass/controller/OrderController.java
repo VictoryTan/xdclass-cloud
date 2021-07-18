@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Description 旭瑶&小滴课堂 xdclass.net
@@ -23,8 +26,6 @@ import java.util.Date;
 public class OrderController {
 
 
-    @Autowired
-    private RestTemplate restTemplate;
 
     @Autowired
     private VideoServiceFeign videoServiceFeign;
@@ -33,7 +34,7 @@ public class OrderController {
     @RequestMapping("/save")
     public Object save(int videoId) {
 
-        Video video = videoServiceFeign.getVideoById(videoId);
+        Video video = videoServiceFeign.saveVideo(new Video());
         VideoOrder videoOrder = new VideoOrder();
         videoOrder.setVideoId(video.getId());
         videoOrder.setVideoTitle(video.getTitle());
@@ -44,9 +45,26 @@ public class OrderController {
     }
 
     @PostMapping("/insert")
-    public int save(@RequestBody Video video) {
+    public Video save(@RequestBody Video video) {
         return videoServiceFeign.saveVideo(video);
     }
 
+
+    private int temp = 0;
+
+    @RequestMapping("/list")
+    public Object list() {
+
+        temp++;
+
+        if (temp % 3 == 0) {
+            throw new RuntimeException();
+        }
+
+        Map<String, String> map = new HashMap<>();
+        map.put("title1", "Alibaba微服务专题");
+        map.put("title2", "小滴课堂面试专题第一季");
+        return map;
+    }
 
 }
