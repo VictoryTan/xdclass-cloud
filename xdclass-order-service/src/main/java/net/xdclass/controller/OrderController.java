@@ -2,7 +2,10 @@ package net.xdclass.controller;
 
 import net.xdclass.domain.Video;
 import net.xdclass.domain.VideoOrder;
+import net.xdclass.service.VideoServiceFeign;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -23,12 +26,14 @@ public class OrderController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private VideoServiceFeign videoServiceFeign;
+
 
     @RequestMapping("/save")
-    public Object save(int videoId){
+    public Object save(int videoId) {
 
-        Video video = restTemplate.getForObject("http://xdclass-video-service/api/v1/video/find_by_id?videoId="+videoId, Video.class);
-
+        Video video = videoServiceFeign.getVideoById(videoId);
         VideoOrder videoOrder = new VideoOrder();
         videoOrder.setVideoId(video.getId());
         videoOrder.setVideoTitle(video.getTitle());
@@ -38,7 +43,10 @@ public class OrderController {
 
     }
 
-
+    @PostMapping("/insert")
+    public int save(@RequestBody Video video) {
+        return videoServiceFeign.saveVideo(video);
+    }
 
 
 }

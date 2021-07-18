@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 9002
 
 spring:
   application:
@@ -9,6 +9,10 @@ spring:
     nacos:
       discovery:
         server-addr: 192.1.1.101
+    sentinel:
+      transport:
+        dashboard: 192.1.1.101:8088
+        port: 9998
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/tables?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
