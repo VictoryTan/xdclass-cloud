@@ -1,26 +1,31 @@
-server:
-  port: 9002
-
-spring:
-  application:
-    name: xdclass-video-service
-
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 192.1.1.101
-    sentinel:
-      transport:
-        dashboard: 192.1.1.101:8088
-        port: 9998
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/tables?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-    username: root
-    password: 123123
-
-
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    map-underscore-to-camel-case: true
+#server:
+#  port: 9002
+#
+#spring:
+#  application:
+#    name: xdclass-video-service
+#  zipkin:
+#    base-url: http://192.1.1.101:9411/ #zipkin地址
+#    discovery-client-enabled: false  #不用开启服务发现
+#  ​sleuth:
+#    sampler:
+#      probability: 1.0 #采样百分比
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.1.1.101
+#    sentinel:
+#      transport:
+#        dashboard: 192.1.1.101:8088
+#        port: 9998
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/tables?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+#    username: root
+#    password: 123123
+#
+#
+#mybatis:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    map-underscore-to-camel-case: true

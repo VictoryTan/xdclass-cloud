@@ -3,10 +3,7 @@ package net.xdclass.controller;
 import net.xdclass.domain.Video;
 import net.xdclass.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,8 +30,8 @@ public class VideoController {
         return video;
     }
 
-    @PostMapping("/save")
-    public int save(@RequestBody Video video){
+    @GetMapping("/save")
+    public int save(@RequestParam String id){
        return 1;
     }
 
